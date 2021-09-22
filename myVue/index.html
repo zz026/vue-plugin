@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVue</title>
+  </head>
+  <body>
+
+    <div id="app">
+      <div>{{ counter }}</div>
+      <div my-text="counter"></div>
+      <div my-html="desc"></div>
+      <!-- 深层嵌套 -->
+      <div>
+        <div>
+          <span>{{counter}}</span>
+        </div>
+      </div>
+      <button @click="handleClick">重置</button>
+      
+      <hr />
+      双向数据绑定：
+      <textarea my-model="desc" style="display:block;width:500px;height:100px;"></textarea>
+    </div>
+
+    <script src="./my-vue.js"></script>
+    <script>
+      const app = new MyVue({
+        el: '#app',
+        data: {
+          counter: 1, 
+          desc:'<div><span style="color:red">bobby</span>早上好！</div>'
+        },
+        methods: {
+          handleClick() {
+            this.counter = 0
+          }
+        },
+      })
+
+      setInterval(() => {
+        app.counter++
+      }, 1000);
+    </script>
+
+  </body>
+</html>
